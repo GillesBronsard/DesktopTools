@@ -41,6 +41,9 @@ def show_about():
     lb = Label(about_window, text="Créé le 02-11-2019")
     lb.pack()
 
+def camelValid():
+    print("TEST")
+
 #-------------------------------------------------------
 #                        PROGRAMME
 #-------------------------------------------------------
@@ -59,8 +62,20 @@ window.resizable(width=False, height=False) #Interdit le redimensionnement de la
 # creer une frame
 frame = Frame(window, bg='#fa4616', bd=0, relief=SUNKEN)
 
+# ajouter un texte
+label_subtitle = Label(frame, text="Camelsificateur", font=("Courrier", 25), bg='#fa4616', fg='white')
+label_subtitle.pack()
+
+#ajouter un champ
+entry_name = Entry(frame, width=27)
+entry_name.pack()
+
 # ajouter la frame
 frame.pack(expand=YES)
+
+#ajouter un bouton de validation
+btn = Button(window, text="Envoyer", command=camelValid)
+btn.pack()
 
 # creation barre de menu
 menu_bar = Menu(window)
