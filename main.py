@@ -22,6 +22,7 @@ Fichiers du projet :
 
 from tkinter import *
 from tkinter import messagebox
+from ModFilesTools import *
 
 #----------------------------------------------------
 #        Zone de déclaration des variables globales

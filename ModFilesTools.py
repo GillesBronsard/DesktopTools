@@ -1,10 +1,10 @@
 # -*-coding:Latin-1 -*
 import os
 import string
-from os import walk, listdir
-from os.path import isfile, isdir, join
 import glob
 import datetime, time
+from os import walk, listdir
+from os.path import isfile, isdir, join
 
 
 #______________________________________________________________     
