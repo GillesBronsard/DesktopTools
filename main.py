@@ -88,7 +88,7 @@ window.config(menu=menu_bar)
 
 #________________________________________________________
 # creation frame1
-frame1 = Frame(window, bg='#b6b7b8', bd=0, relief=SUNKEN)
+frame1 = Frame(window, bg='#b6b7b8', bd=2, relief=RAISED)
 
 # ajouter un texte à frame1
 label_subtitle = Label(frame1, text="CamelCasifieur", font=("Courrier", 20), bg='#b6b7b8', fg='white', width=17)
@@ -111,7 +111,7 @@ frame1.grid(row =0, column=0, pady=10, padx=10, ipady=0, ipadx=0)
 
 #________________________________________________________
 # creation frame2
-frame2 = Frame(window, bg='#b6b7b8', bd=0, relief=GROOVE)
+frame2 = Frame(window, bg='#b6b7b8', bd=2, relief=RAISED)
 
 # ajouter un texte à frame2
 label_subtitle2 = Label(frame2, text="Arborescence", font=("Courrier", 20), bg='#b6b7b8', fg='white', width=17)
@@ -134,7 +134,7 @@ frame2.grid(row =1, column=0, pady=10, padx=20, ipady=0, ipadx=0)
 
 #________________________________________________________
 # creation frame3
-frame3 = Frame(window, bg='#b6b7b8', bd=0, relief=GROOVE)
+frame3 = Frame(window, bg='#b6b7b8', bd=2, relief=RAISED)
 
 # ajouter un texte à frame2
 label_subtitle3 = Label(frame3, text="ResizImage", font=("Courrier", 20), bg='#b6b7b8', fg='white', width=17)
