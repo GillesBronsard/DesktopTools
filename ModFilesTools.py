@@ -5,7 +5,7 @@ import glob
 import datetime, time
 from os import walk, listdir
 from os.path import isfile, isdir, join
-
+from PIL import Image
 
 #______________________________________________________________     
 #Supprime la ponctuation
@@ -170,3 +170,68 @@ def lectFic(chemFichier) :
     fic.close()
 #Exemple
 #lectFic("S:/monFichier.txt")
+#______________________________________________________________
+#Retourne la largeur d'un fichier
+def whatWidth (source):
+    try:
+        maPic = Image.open(source)
+        if maPic.size[0] > 8000: 
+            pass
+        else: 
+            return(maPic.size[0])
+    except IOError:
+        pass
+#Exemple    
+#print(whatWidth("c:/temp/portrait.jpg"))  
+    
+#Retourne la hauteur d'un fichier
+def whatHeight(source):
+    try:  
+        maPic = Image.open(source)
+        if maPic.size[0] > 8000:
+            pass
+        else:
+            return(maPic.size[1])
+    except IOError:
+        pass
+#Exemple    
+#print(whatHeight("c:/temp/portrait.jpg"))  
+
+#______________________________________________________________
+#Redimensionner des images en JPG et BMP dans un dossier unique
+
+def resizImage(source, diMax):
+    imageFiles = [ f for f in listdir(source) if isfile(join(source,f)) and (f.endswith("JPG") or f.endswith("jpg")) ] #or f.endswith("BMP") or f.endswith("bmp")) ]
+    target = int(diMax)
+    for im in imageFiles :
+        if whatWidth(source+"/"+im)==None or whatWidth(source+"/"+im)==2048 or whatHeight(source+"/"+im)==2048 or whatWidth(source+"/"+im)<2048 and whatHeight(source+"/"+im)<2048:
+            pass
+        else:
+            try:
+                im1 = Image.open(join(source,im))
+                originalWidth, originalHeight = im1.size
+                ratio = originalWidth / originalHeight
+                if ratio > 1 :
+                    width = target
+                    height = int(width / ratio)
+                else :
+                    height = target
+                    width = int(height * ratio)
+                im2 = im1.resize((width, height), Image.ANTIALIAS)
+                #im2.save(join(source, "".join([str(width),"x",str(height),"_",im]))) #Permet de ne pas ecraser l'original
+                im2.save(source+'/'+im)
+            except IOError:#Erreur sur les photos panoramiques
+                pass
+            except FileNotFoundError:
+                pass
+    try:
+        with open("C:/temp/log.log", "a") as fic:
+            dossier = source + " : Dossier traité le {}".format(time.strftime("%d/%m/%Y à %H:%M"))
+            fic.write("\n"+ str(dossier))
+#            fic.write("\n\n"+ str(im)+" redimensionnée")
+    except UnboundLocalError:
+        print("Le dossier", source, "est vide")
+
+#Exemple
+#resizImage("C:/temp/Dossier01/Bureaux Nantes", 2048)
+
