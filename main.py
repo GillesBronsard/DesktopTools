@@ -42,10 +42,18 @@ def show_about():
     lb.pack()
 
 def camelValid():
-    entry_nameb.delete(0, END)
+    entry_nameb.delete(0, END) #Efface le champ qui recupere le resultat
     result1 = camelCasifier(entry_name.get())
     entry_nameb.insert(0, result1)
-    entry_name.delete(0, END)
+    entry_name.delete(0, END) #Efface le champ d'origine
+    
+def arboValid():
+    try:
+        arboDansFic(entry_name2.get())
+    except UnicodeEncodeError:
+        pass
+    entry_name2.delete(0, END) #Efface le champ d'origine
+    
 #-------------------------------------------------------
 #                        PROGRAMME
 #-------------------------------------------------------
@@ -103,7 +111,7 @@ frame1.grid(row =0, column=0, pady=20, padx=10, ipady=0, ipadx=0)
 frame2 = Frame(window, bg='#b6b7b8', bd=0, relief=GROOVE)
 
 # ajouter un texte à frame2
-label_subtitle = Label(frame2, text="Frame2", font=("Courrier", 25), bg='#b6b7b8', fg='white')
+label_subtitle = Label(frame2, text="Arborescence", font=("Courrier", 25), bg='#b6b7b8', fg='white')
 label_subtitle.grid(row =0, column=0, sticky =S)
 
 #ajouter un champ à frame2
@@ -111,7 +119,7 @@ entry_name2 = Entry(frame2, width=27)
 entry_name2.grid(row =1, column=0, padx=10, sticky=E)
 
 #ajouter un bouton de validation à frame2
-btn = Button(frame2, text="Envoyer", command=camelValid)
+btn = Button(frame2, text="Envoyer", command=arboValid)
 btn.grid(row =1, column=1, padx=10, pady=10)
 
 # ajouter frame2
