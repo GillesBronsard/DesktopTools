@@ -42,8 +42,10 @@ def show_about():
     lb.pack()
 
 def camelValid():
-    print("TEST")
-
+    entry_nameb.delete(0, END)
+    result1 = camelCasifier(entry_name.get())
+    entry_nameb.insert(0, result1)
+    entry_name.delete(0, END)
 #-------------------------------------------------------
 #                        PROGRAMME
 #-------------------------------------------------------
@@ -78,19 +80,23 @@ window.config(menu=menu_bar)
 frame1 = Frame(window, bg='#b6b7b8', bd=0, relief=SUNKEN)
  
 # ajouter un texte à frame1
-label_subtitle = Label(frame1, text="Frame1", font=("Courrier", 25), bg='#b6b7b8', fg='white')
-label_subtitle.grid(row = 0, column=0, sticky =S)
+label_subtitle = Label(frame1, text="CamelCasificateur", font=("Courrier", 25), bg='#b6b7b8', fg='white')
+label_subtitle.grid(row = 0, column=0, ipadx=0, sticky=W)
  
 #ajouter un champ à frame1
 entry_name = Entry(frame1, width=27)
-entry_name.grid(row = 1, column=0, sticky =S)
+entry_name.grid(row =1, column=0, padx=10, sticky=EW)
+
+#ajouter un champ2 à frame1
+entry_nameb = Entry(frame1, width=27)
+entry_nameb.grid(row =2, column=0, padx=10, pady=10, sticky=EW)
  
 #ajouter un bouton de validation à frame1
 btn = Button(frame1, text="Envoyer", command=camelValid)
-btn.grid(row =2, column=0, sticky=S)
+btn.grid(row =1, column=1, padx=10, pady=10)
  
 # ajouter frame1
-frame1.grid(row =0, column=0, pady=20, padx=0, ipady=0, ipadx=0)
+frame1.grid(row =0, column=0, pady=20, padx=10, ipady=0, ipadx=0)
 
 #________________________________________________________
 # creation frame2
@@ -102,11 +108,11 @@ label_subtitle.grid(row =0, column=0, sticky =S)
 
 #ajouter un champ à frame2
 entry_name2 = Entry(frame2, width=27)
-entry_name2.grid(row =1, column=0, sticky=E)
+entry_name2.grid(row =1, column=0, padx=10, sticky=E)
 
 #ajouter un bouton de validation à frame2
 btn = Button(frame2, text="Envoyer", command=camelValid)
-btn.grid(row =2, sticky=S)
+btn.grid(row =1, column=1, padx=10, pady=10)
 
 # ajouter frame2
 frame2.grid(row =1, column=0, pady=10, padx=20, ipady=0, ipadx=0)
