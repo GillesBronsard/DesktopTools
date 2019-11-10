@@ -4,7 +4,7 @@
 
 Nom du projet : DesktopTools
 
-Date de la derniere revision : 02-11-2019
+Date de la derniere revision : 10-11-2019
 
 Révision N° : Version 1
 
@@ -49,14 +49,14 @@ def camelValid():
     
 def arboValid():
     try:
-        arboDansFic(entry_name2.get())
+        arboDansFic(entry_name.get())
     except UnicodeEncodeError:
         pass
-    entry_name2.delete(0, END) #Efface le champ d'origine
+    entry_name.delete(0, END) #Efface le champ d'origine
     
 def resizeValid():
-    resizImage(entry_name3.get(), 2048)
-    entry_name3.delete(0, END) #Efface le champ d'origine
+    resizImage(entry_name.get(), 2048)
+    entry_name.delete(0, END) #Efface le champ d'origine
     
 #-------------------------------------------------------
 #                        PROGRAMME
@@ -66,8 +66,7 @@ def resizeValid():
 window = Tk()
 # personnalisation de la fenetre
 window.title("est Tools")
-window.geometry("720x650")
-window.minsize(480, 360)
+window.geometry("589x261")
 window.iconbitmap("includes/LogoB.ico")
 window.config(background='#fa4616')
 window.resizable(width=False, height=False) #Interdit le redimensionnement de la fenêtre
@@ -87,75 +86,44 @@ menu_bar.add_cascade(label="Fichier", menu=file_menu)
 window.config(menu=menu_bar)
 
 #________________________________________________________
-# creation frame1
+# creation frame
 frame1 = Frame(window, bg='#b6b7b8', bd=2, relief=RAISED)
 
-# ajouter un texte à frame1
-label_subtitle = Label(frame1, text="CamelCasifieur", font=("Courrier", 20), bg='#b6b7b8', fg='white', width=17)
-label_subtitle.grid(row = 0, column=0, ipadx=0, sticky=W)
- 
 #ajouter un champ à frame1
-entry_name = Entry(frame1, width=50)
-entry_name.grid(row =1, column=0, padx=10, sticky=EW)
+entry_name = Entry(frame1, width=90)
+entry_name.grid(row =1, column=0, padx=10, pady=10, sticky=EW)
 
 #ajouter un champ2 à frame1
-entry_nameb = Entry(frame1, width=27)
+entry_nameb = Entry(frame1, width=90)
 entry_nameb.grid(row =2, column=0, padx=10, pady=10, sticky=EW)
+
+# ajouter un texte à frame1
+label_subtitle2 = Label(frame1, text="CamelCasifie la chaîne de caractères entrée dans le champ 1 ", font=("Courrier", 11), bg='#b6b7b8', fg='white', width=45)
+label_subtitle2.grid(row =3, column=0, padx=10, pady=10, sticky =NW)
  
 #ajouter un bouton de validation à frame1
-btn = Button(frame1, text="Envoyer", command=camelValid)
-btn.grid(row =1, column=1, padx=10, pady=10)
- 
+btn = Button(frame1, text="Camel", width=7, command=camelValid)
+btn.grid(row =3, column=0, padx=10, pady=10, sticky =E)
+
+# ajouter un second à frame1
+label_subtitle2 = Label(frame1, text="Crée un fichier Arborescence.txt dans le dossier traité (champ 1)", font=("Courrier", 11), bg='#b6b7b8', fg='white', width=47)
+label_subtitle2.grid(row =4, column=0, padx=10, pady=10, sticky =NW)
+
+#ajouter un bouton de validation à frame1
+btn = Button(frame1, text="Arbo", width=7, command=arboValid)
+btn.grid(row =4, column=0, padx=10, pady=10, sticky =E)
+
+# ajouter un 3eme texte à frame1
+label_subtitle3 = Label(frame1, text="Redimensionne les photos du dossier entrée en champ 1   ", font=("Courrier", 11), bg='#b6b7b8', fg='white', width=45)
+label_subtitle3.grid(row =5, column=0, padx=0, pady=0, sticky=W)
+
+#ajouter un bouton de validation à frame1
+btn = Button(frame1, text="Resiz", width=7, command=resizeValid)
+btn.grid(row =5, column=0, padx=10, pady=10, sticky=E) 
+
 # ajouter frame1
 frame1.grid(row =0, column=0, pady=10, padx=10, ipady=0, ipadx=0)
 
-#________________________________________________________
-# creation frame2
-frame2 = Frame(window, bg='#b6b7b8', bd=2, relief=RAISED)
-
-# ajouter un texte à frame2
-label_subtitle2 = Label(frame2, text="Arborescence", font=("Courrier", 20), bg='#b6b7b8', fg='white', width=17)
-label_subtitle2.grid(row =0, column=0, ipadx=0, sticky =W)
-
-# ajouter un texte à frame2
-label_subtitle2 = Label(frame2, text="Crée un fichier Arborescence.txt dans le dossier traité", font=("Courrier", 10), bg='#b6b7b8', fg='white', width=40)
-label_subtitle2.grid(row =1, column=0, ipadx=0, sticky =N)
-
-#ajouter un champ à frame2
-entry_name2 = Entry(frame2, width=27)
-entry_name2.grid(row =2, column=0, padx=10, sticky=EW)
-
-#ajouter un bouton de validation à frame2
-btn = Button(frame2, text="Envoyer", command=arboValid)
-btn.grid(row =2, column=1, padx=10, pady=10)
-
-# ajouter frame2
-frame2.grid(row =1, column=0, pady=10, padx=20, ipady=0, ipadx=0)
-
-#________________________________________________________
-# creation frame3
-frame3 = Frame(window, bg='#b6b7b8', bd=2, relief=RAISED)
-
-# ajouter un texte à frame2
-label_subtitle3 = Label(frame3, text="ResizImage", font=("Courrier", 20), bg='#b6b7b8', fg='white', width=17)
-label_subtitle3.grid(row =0, column=0, ipadx=0, sticky =W)
-
-# ajouter un texte à frame3
-label_subtitle3 = Label(frame3, text="Resize les photos du dossier traité (non récursif)", font=("Courrier", 10), bg='#b6b7b8', fg='white', width=40)
-label_subtitle3.grid(row =1, column=0, ipadx=0, sticky =N)
-
-#ajouter un champ à frame3
-entry_name3 = Entry(frame3, width=27)
-entry_name3.grid(row =2, column=0, padx=10, sticky=EW)
-
-#ajouter un bouton de validation à frame3
-btn = Button(frame3, text="Envoyer", command=resizeValid)
-btn.grid(row =2, column=1, padx=10, pady=10)
-
-# ajouter frame3
-frame3.grid(row =2, column=0, pady=10, padx=20, ipady=0, ipadx=0)
-
-#________________________________________________________
 # afficher
 window.mainloop()
 
