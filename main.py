@@ -12,8 +12,10 @@ Client : ProjetPerso
 
 Fichiers du projet :
                     -    main.py
+                    -    ModFilesTools.py
+                    -    includes/tool.ico
+                    -    README.md
                     
-                
 """
 
 #-----------------------------------------------
@@ -40,7 +42,7 @@ def show_about():
     about_window.title("About")
     about_window.geometry("250x80")
     about_window.iconbitmap("includes/tool.ico")
-    lb = Label(about_window, text="\nCreated on 02-11-2019\nby Gilles Bronsard\n\ngilles@bronsard.com\n")
+    lb = Label(about_window, text="\nCreated in November 2019\nby Gilles Bronsard\n\ngilles@bronsard.com\n")
     lb.pack()
 
 def camelValid():
