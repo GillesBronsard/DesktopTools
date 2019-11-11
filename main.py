@@ -37,10 +37,10 @@ import os, os.path
 
 def show_about():
     about_window = Toplevel(window)
-    about_window.title("A propos")
-    about_window.geometry("250x70")
+    about_window.title("About")
+    about_window.geometry("250x80")
     about_window.iconbitmap("includes/tool.ico")
-    lb = Label(about_window, text="\nCréé le 02-11-2019, \npar Gilles Bronsard\ngilles@bronsard.com\n")
+    lb = Label(about_window, text="\nCreated on 02-11-2019\nby Gilles Bronsard\n\ngilles@bronsard.com\n")
     lb.pack()
 
 def camelValid():
@@ -64,7 +64,11 @@ def openDoss(): #Le resultat du bouton parcourir s'affiche dans le champ 1
     entry_name.delete(0, END)
     cible=askdirectory(parent=window)
     entry_name.insert(0, cible)
-    
+
+def clear():
+    entry_name.delete(0, END)
+    entry_nameb.delete(0, END)
+   
 #-------------------------------------------------------
 #                        PROGRAMME
 #-------------------------------------------------------
@@ -82,12 +86,16 @@ window.resizable(width=False, height=False) #Interdit le redimensionnement de la
 # creation barre de menu
 menu_bar = Menu(window)
 
-# creation 1er menu
+# creation menus
 file_menu = Menu(menu_bar, tearoff=0)
-file_menu.add_command(label="A propos", command=show_about)
-file_menu.add_command(label="Quitter", command=window.quit)
+file_menu.add_command(label="Quit", command=window.quit)
 
-menu_bar.add_cascade(label="Fichier", menu=file_menu)
+file_menu2 = Menu(menu_bar, tearoff=0)
+file_menu2.add_command(label="About", command=show_about)
+
+menu_bar.add_cascade(label="File", menu=file_menu)
+menu_bar.add_cascade(label="Clear", command=clear)
+menu_bar.add_cascade(label="?", menu=file_menu2)
 
 # configurer la fenetre pour ajouter la barre de menu
 window.config(menu=menu_bar)
@@ -101,7 +109,7 @@ entry_name = Entry(frame1, width=75)
 entry_name.grid(row =1, column=0, padx=10, pady=10, sticky=W)
 
 #ajouter un bouton parcourir 
-btn = Button(frame1, text="Parcourir", width=10, command=openDoss)
+btn = Button(frame1, text="Browse", width=10, command=openDoss)
 btn.grid(row =1, column=0, padx=10, pady=10, sticky =E)
 
 #ajouter un champ2 à frame1
