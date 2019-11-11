@@ -23,6 +23,8 @@ Fichiers du projet :
 from tkinter import *
 from tkinter import messagebox
 from ModFilesTools import *
+from tkinter.filedialog import askopenfile, askdirectory
+import os, os.path
 
 #----------------------------------------------------
 #        Zone de déclaration des variables globales
@@ -36,9 +38,9 @@ from ModFilesTools import *
 def show_about():
     about_window = Toplevel(window)
     about_window.title("A propos")
-    about_window.geometry("250x50")
-    about_window.iconbitmap("includes/LogoB.ico")
-    lb = Label(about_window, text="Créé le 02-11-2019")
+    about_window.geometry("250x70")
+    about_window.iconbitmap("includes/tool.ico")
+    lb = Label(about_window, text="\nCréé le 02-11-2019, \npar Gilles Bronsard\ngilles@bronsard.com\n")
     lb.pack()
 
 def camelValid():
@@ -58,6 +60,11 @@ def resizeValid():
     resizImage(entry_name.get(), 2048)
     entry_name.delete(0, END) #Efface le champ d'origine
     
+def openDoss(): #Le resultat du bouton parcourir s'affiche dans le champ 1
+    entry_name.delete(0, END)
+    cible=askdirectory(parent=window)
+    entry_name.insert(0, cible)
+    
 #-------------------------------------------------------
 #                        PROGRAMME
 #-------------------------------------------------------
@@ -65,9 +72,9 @@ def resizeValid():
 # creation fenetre principale
 window = Tk()
 # personnalisation de la fenetre
-window.title("est Tools")
-window.geometry("589x261")
-window.iconbitmap("includes/LogoB.ico")
+window.title("Desktop Tools")
+window.geometry("589x268")
+window.iconbitmap("includes/tool.ico")
 window.config(background='#fa4616')
 window.resizable(width=False, height=False) #Interdit le redimensionnement de la fenêtre
 
@@ -90,8 +97,12 @@ window.config(menu=menu_bar)
 frame1 = Frame(window, bg='#b6b7b8', bd=2, relief=RAISED)
 
 #ajouter un champ à frame1
-entry_name = Entry(frame1, width=90)
-entry_name.grid(row =1, column=0, padx=10, pady=10, sticky=EW)
+entry_name = Entry(frame1, width=75)
+entry_name.grid(row =1, column=0, padx=10, pady=10, sticky=W)
+
+#ajouter un bouton parcourir 
+btn = Button(frame1, text="Parcourir", width=10, command=openDoss)
+btn.grid(row =1, column=0, padx=10, pady=10, sticky =E)
 
 #ajouter un champ2 à frame1
 entry_nameb = Entry(frame1, width=90)
